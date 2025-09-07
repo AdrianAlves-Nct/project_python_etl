@@ -5,6 +5,7 @@ Este projeto tem como objetivo aplicar **ETL** (Extract, Transform, Load) e aná
 ---
 
 ## 📂 Estrutura do Projeto
+```text
 project_ecommerce/
 │
 ├── data/
@@ -20,7 +21,7 @@ project_ecommerce/
 │
 ├── etl_process.py # script principal para rodar o ETL
 ├── requirements.txt # dependências do projeto
-└── README.md # documentação do projeto
+└── README.md # documentação do projeto```
 
 🧹 Funcionalidades de ETL
 
