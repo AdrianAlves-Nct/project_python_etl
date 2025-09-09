@@ -21,7 +21,7 @@ project_ecommerce/
 │
 ├── etl_process.py # script principal para rodar o ETL
 ├── requirements.txt # dependências do projeto
-└── README.md # documentação do projeto```
+└── README.md # documentação do projeto
 
 🧹 Funcionalidades de ETL
 
