@@ -123,7 +123,7 @@ def corrigir_valores(df):
     
 
 
-def pipeline_etl(df, colunas_texto=None, colunas_data=None, colunas_dup=None, ascending_dup=True, remover_nulos_flag=True):
+def pipeline_etl(df, colunas_texto=None, colunas_data=None, colunas_dup=None, ascending_dup=True, remover_nulos_flag=True, valores_corrigir=True):
     """
     Pipeline para ETL de dataframes.
 
@@ -159,67 +159,12 @@ def pipeline_etl(df, colunas_texto=None, colunas_data=None, colunas_dup=None, as
     if remover_nulos_flag:
         df = remover_nulos(df)
 
+    # Corrigir Valores
+    if valores_corrigir:
+        df = corrigir_valores(df)
+
+
     return df
 
 
 
-data_test =  {
-    "order_id": [1, 2, 2, 3, None, 5, 6, 6],
-    "order_date": [
-        "2021-01-05", 
-        "2021-01-07", 
-        "2021-01-07", 
-        "2021-13-01",  # data inválida
-        None, 
-        "2021-02-15", 
-        "2021-03-01", 
-        "not_a_date"   # valor errado
-    ],
-    "customer_city": [
-        "São Paulo", 
-        "Rio de Janeiro", 
-        None, 
-        "Curitba",      # erro de digitação
-        " ",            # string vazia
-        "Belo Horizonte", 
-        "São Paulo", 
-        "São Paulo"
-    ],
-    "product_name": [
-        "Notebook Gamer", 
-        "Mouse Sem Fio", 
-        "Mouse Sem Fio", 
-        "Monitor 24''", 
-        "Teclado Mecânico", 
-        None, 
-        "Headset Bluetooth", 
-        "Monitor 24''"
-    ],
-    "price": [
-        4500, 
-        120, 
-        -50,      # preço inválido
-        900, 
-        None, 
-        300, 
-        265, 
-        900
-    ],
-    "quantity": [
-        1, 
-        2, 
-        0,        # quantidade inválida
-        1, 
-        None, 
-        1, 
-        -3,       # quantidade inválida
-        1
-    ]
-}
-
-
-df = pd.DataFrame(data_test)
-
-
-df_limpo = pipeline_etl(df, colunas_texto=['customer_city', 'product_name'], colunas_data=['order_date'], colunas_dup=['order_id'], ascending_dup=True, remover_nulos_flag=False)
-print(df_limpo)
